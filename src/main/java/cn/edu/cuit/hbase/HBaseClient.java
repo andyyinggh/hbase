@@ -82,6 +82,7 @@ public class HBaseClient {
     	
     	value = new String(result.getValue(Bytes.toBytes(columnFamily), Bytes.toBytes(column)));
     	System.out.println(value);
+    	logger.info("success");
     	return value;
     }
     
