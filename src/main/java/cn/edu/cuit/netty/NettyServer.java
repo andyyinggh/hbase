@@ -22,7 +22,6 @@ public class NettyServer {
 	public static void main(String[] args) throws InterruptedException {
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
-		
 		try {
 			ServerBootstrap bootstrap = new ServerBootstrap();
 			bootstrap.group(bossGroup, workerGroup);
@@ -31,14 +30,17 @@ public class NettyServer {
 
 				@Override
 				public void initChannel(SocketChannel ch) throws Exception {
-					ch.pipeline().addLast(new HelloServer());
+					ch.pipeline()
+					.addLast(new Encoder(String.class))
+					.addLast(new Decoder(String.class))
+					.addLast(new HelloServer());
 				}
 			})
 			.option(ChannelOption.SO_BACKLOG, 128)
 			.childOption(ChannelOption.SO_KEEPALIVE, true);
 			
 			ChannelFuture future = bootstrap.bind(host, port).sync();
-			logger.info("server started on host {} and port {}", host, port);
+			logger.info("server started on host {}:{}", host, port);
 			future.channel().closeFuture().sync();
 			
 		} finally {

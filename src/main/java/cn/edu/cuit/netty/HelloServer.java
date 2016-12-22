@@ -12,11 +12,11 @@ public class HelloServer extends ChannelInboundHandlerAdapter {
 	
 	@Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		logger.info("收到client消息："+ (byte[]) msg);
+		logger.info("server收到client消息："+ msg.toString());
 		
-		/*Object obj = "222";
-		logger.info("server 发送消息：" + obj);
-		ctx.writeAndFlush(obj);*/
+		String obj = "222";
+		logger.info("server发送client消息：" + obj);
+		ctx.writeAndFlush(obj);
     }
 
 	@Override

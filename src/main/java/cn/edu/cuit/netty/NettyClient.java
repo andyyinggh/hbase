@@ -1,6 +1,5 @@
 package cn.edu.cuit.netty;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,8 +20,6 @@ public class NettyClient {
 	
 	public static void main(String[] args) throws InterruptedException {
 		EventLoopGroup group = new NioEventLoopGroup();
-		
-		
 		try {
 			Bootstrap bootstrap = new Bootstrap();
 			bootstrap.group(group);
@@ -31,12 +28,15 @@ public class NettyClient {
 
 				@Override
 				public void initChannel(SocketChannel ch) throws Exception {
-					ch.pipeline().addLast(new HelloClient());
+					ch.pipeline()
+					.addLast(new Encoder(String.class))
+					.addLast(new Decoder(String.class))
+					.addLast(new HelloClient());
 				}
 			});
 			
 			ChannelFuture future = bootstrap.connect(host, port).sync();
-			logger.info("client 连接成功");
+			logger.info("client connect {}:{} is ok ",host,port);
 			future.channel().closeFuture().sync();
 		} finally {
 			group.shutdownGracefully();
