@@ -27,6 +27,9 @@ public class HBaseClient {
 		Configuration conf = HBaseConfiguration.create();
     	/*conf.set("hbase.master", "hdfs://172.22.35.199:60000");
     	conf.set("hbase.zookeeper.quorum", "172.22.35.199,172.22.35.201,172.22.35.202");*/
+		
+		conf.set("hbase.client.keyvalue.maxsize", "104857600");
+		
     	conf.addResource("classpath:./hbase-site.xml");
     	try {
     		con = ConnectionFactory.createConnection(conf);
