@@ -1,5 +1,8 @@
 package cn.edu.cuit.redis;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import cn.edu.cuit.utils.ConfigUtil;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -7,39 +10,47 @@ import redis.clients.jedis.JedisPoolConfig;
 
 public class RedisClient {
 	
+	private static Logger logger = LoggerFactory.getLogger(RedisClient.class);
+	
 	private static JedisPool jedisPool;
+	private static String host;
+	private static int port;
+	private static String pass;
 	private static int maxActive;
 	private static int maxWait;
 	private static int maxIdle;
 	
-	private static void createJedisPool() {
+	private void createJedisPool() {
 		JedisPoolConfig config = new JedisPoolConfig();
 		config.setMaxActive(maxActive);
 		config.setMaxWait(maxWait);
 		config.setMaxIdle(maxIdle);
-		jedisPool = new JedisPool(config,"localhost",6379);
+		jedisPool = new JedisPool(config, host, port);
 	}
 	
-	private static void loadConfig() {
+	private void loadConfig() {
 		ConfigUtil.load("redis");
+		host = ConfigUtil.getString("redis.host");
+		port = ConfigUtil.getInteger("redis.port");
+		pass = ConfigUtil.getString("redis.pass");
 		maxActive = ConfigUtil.getInteger("redis.maxActive");
 		maxWait = ConfigUtil.getInteger("redis.maxWait");
 		maxIdle = ConfigUtil.getInteger("redis.maxIdle");
 	}
 	
-	private static synchronized void init() {
+	private synchronized void init() {
 		if(jedisPool == null) {
 			loadConfig();
 			createJedisPool();
 		}
 	}
 	
-	public static Jedis getJedis() {
+	public Jedis getJedis() {
 		init();
 		return jedisPool.getResource();
 	}
 	
-	public static void returnResource(Jedis jedis) {
+	public void returnResource(Jedis jedis) {
 		if(jedis != null) {
 			jedisPool.returnResource(jedis);
 		}
@@ -55,7 +66,7 @@ public class RedisClient {
 		}
 	}
 	
-	public static String set(String key, String value) {
+	public String set(String key, String value) {
 		Jedis jedis = null;
 		String result = null;
 		try {
@@ -67,7 +78,7 @@ public class RedisClient {
 		return result;
 	}
 	
-	public static String get(String key) {
+	public String get(String key) {
 		Jedis jedis = null;
 		try {
 			jedis = getJedis();
@@ -81,8 +92,10 @@ public class RedisClient {
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Jedis jedis = new Jedis("172.22.35.201",6379);
+		jedis.auth("123456");
+		jedis.set("user", "admin");
+		System.out.println(jedis.get("user"));
 	}
 
 }
