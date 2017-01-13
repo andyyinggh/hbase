@@ -25,7 +25,7 @@ public class RedisClient {
 		config.setMaxActive(maxActive);
 		config.setMaxWait(maxWait);
 		config.setMaxIdle(maxIdle);
-		jedisPool = new JedisPool(config, host, port);
+		jedisPool = new JedisPool(config, host, port, 50000, pass);
 	}
 	
 	private void loadConfig() {
@@ -92,10 +92,8 @@ public class RedisClient {
 	
 	
 	public static void main(String[] args) {
-		Jedis jedis = new Jedis("172.22.35.201",6379);
-		jedis.auth("123456");
-		jedis.set("user", "admin");
-		System.out.println(jedis.get("user"));
+		RedisClient rc = new RedisClient();
+		System.out.println(rc.get("user"));
 	}
 
 }

@@ -1,4 +1,4 @@
-package cn.edu.cuit.jade;
+package cn.edu.cuit.datasource;
 
 import java.sql.Connection;
 import java.sql.SQLException;

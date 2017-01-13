@@ -110,6 +110,21 @@
 	    <version>0.9.1.2</version>
 	</dependency>
 	
+	<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+	<dependency>
+	    <groupId>com.alibaba</groupId>
+	    <artifactId>druid</artifactId>
+	    <version>1.0.18</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+	<dependency>
+	    <groupId>org.apache.kafka</groupId>
+	    <artifactId>kafka-clients</artifactId>
+	    <version>0.10.1.0</version>
+	</dependency>
+	
+	
 	
 		
 

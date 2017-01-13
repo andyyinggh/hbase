@@ -38,18 +38,6 @@ public class HBaseClient {
     	}
 	}
 	
-	
-    public static void main( String[] args ) throws IOException {
-    	String tableName = "user";
-    	String rowkey = "jack";
-    	String columnFamily = "course";
-    	String column = "math";
-    	String data = "100";
-//    	putRow(tableName, rowkey, columnFamily, column, data);
-    	query(tableName, rowkey, columnFamily, column);
-    	
-    }
-    
     
     public static boolean create(String tableName, String[] columnFamilys) throws IOException {
     	TableName tablename = TableName.valueOf(tableName);
@@ -115,6 +103,19 @@ public class HBaseClient {
     	admin.disableTable(tablename);
     	admin.deleteTable(tablename);
 
+    }
+    
+    
+	
+    public static void main( String[] args ) throws IOException {
+    	String tableName = "user";
+    	String rowkey = "jack";
+    	String columnFamily = "course";
+    	String column = "math";
+    	String data = "100";
+//    	putRow(tableName, rowkey, columnFamily, column, data);
+    	query(tableName, rowkey, columnFamily, column);
+    	
     }
     
 }

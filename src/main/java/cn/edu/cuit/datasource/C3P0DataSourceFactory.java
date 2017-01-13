@@ -1,4 +1,4 @@
-package cn.edu.cuit.jade;
+package cn.edu.cuit.datasource;
 
 import java.beans.PropertyVetoException;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
