@@ -13,7 +13,7 @@ public class CallableTest implements Callable<String> {
 	
 	private Lock lock = new ReentrantLock();
 	private Condition condition = lock.newCondition();
-	private static CallableTest instance;
+	private static volatile CallableTest instance;
 	
 	public static CallableTest getInstance() {
 		if(instance == null) {
