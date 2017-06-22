@@ -96,46 +96,72 @@
 	    <version>1.1.0</version>
 	</dependency>
 	
-	<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core_2.10 -->
 	<dependency>
 	    <groupId>org.apache.spark</groupId>
 	    <artifactId>spark-core_2.10</artifactId>
 	    <version>2.1.0</version>
 	</dependency>
 	
-	<!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
 	<dependency>
 	    <groupId>c3p0</groupId>
 	    <artifactId>c3p0</artifactId>
 	    <version>0.9.1.2</version>
 	</dependency>
 	
-	<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
 	<dependency>
 	    <groupId>com.alibaba</groupId>
 	    <artifactId>druid</artifactId>
 	    <version>1.0.18</version>
 	</dependency>
 	
-	<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
 	<dependency>
 	    <groupId>org.apache.kafka</groupId>
 	    <artifactId>kafka-clients</artifactId>
 	    <version>0.10.1.0</version>
 	</dependency>
 	
-	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 	<dependency>
 	    <groupId>mysql</groupId>
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>5.1.40</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
-<dependency>
-    <groupId>org.apache.commons</groupId>
-    <artifactId>commons-compress</artifactId>
-    <version>1.9</version>
-</dependency>
+	
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-compress</artifactId>
+	    <version>1.9</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.alibaba.jstorm</groupId>
+	    <artifactId>jstorm-core</artifactId>
+	    <version>2.1.1</version>
+	    <exclusions>
+	    	<exclusion>
+	    		<groupId>org.slf4j</groupId>
+	    		<artifactId>slf4j-api</artifactId>
+	    	</exclusion>
+	    	<exclusion>
+	    		<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-nop</artifactId>
+	    	</exclusion>
+	    	<exclusion>
+	    		<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-jdk14</artifactId>
+	    	</exclusion>
+	    	
+	    </exclusions>
+	</dependency>
+	<dependency>
+	    <groupId>org.elasticsearch</groupId>
+	    <artifactId>elasticsearch</artifactId>
+	    <version>2.2.0</version>
+	</dependency>
+	<!-- <dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>slf4j-api</artifactId>
+	    <version>1.7.5</version>
+	</dependency> -->
+	
 	
 	
 	
