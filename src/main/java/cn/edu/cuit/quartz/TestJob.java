@@ -15,9 +15,9 @@ public class TestJob implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-//		JobDetail jobDetail = context.getJobDetail();
-//		jobDetail.getJobDataMap();
-		System.out.println(new Date() + ":开始执行Job");
+		JobDetail jobDetail = context.getJobDetail();
+		String str  = jobDetail.getJobDataMap().getString("task");
+		System.out.println(new Date() + ":开始执行Job-----" + str);
 		
 	}
 
